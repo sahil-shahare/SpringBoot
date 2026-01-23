@@ -13,8 +13,8 @@ public class UserController {
 	User user;
 	
 	@GetMapping("/getuser")
-	public int getUser() {
-		return user.getId();
+	public String getUser() {
+		return "Return User";
 	}
 	
 }
