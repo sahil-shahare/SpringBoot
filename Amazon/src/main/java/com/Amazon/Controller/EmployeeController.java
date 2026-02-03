@@ -18,7 +18,7 @@ import com.Amazon.Entity.Employee;
 public class EmployeeController {
 
 	List<Employee> uss = new ArrayList<Employee>();
-	
+
 	@PostMapping("/add-employee")
 	public Employee addEmployee(@RequestBody Employee employee) {
 		if (employee != null) {
@@ -27,10 +27,10 @@ public class EmployeeController {
 		System.out.println(uss);
 		return employee;
 	}
-	
+
 	@GetMapping("get-dto-employee")
-	public List<EmployeeDTO> getAll(){
-		return uss.stream().map((i)->{
+	public List<EmployeeDTO> getAll() {
+		return uss.stream().map((i) -> {
 			EmployeeDTO dto = new EmployeeDTO();
 			dto.setCompany_name(i.getName());
 			dto.setGst_number(i.getCompany().getGst_number());
@@ -38,7 +38,7 @@ public class EmployeeController {
 			dto.setName(i.getName());
 			return dto;
 		}).collect(Collectors.toList());
-		
+
 	}
-	
+
 }
