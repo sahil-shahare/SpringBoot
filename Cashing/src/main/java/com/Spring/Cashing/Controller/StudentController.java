@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Spring.Cashing.Entity.Student;
 import com.Spring.Cashing.Repository.StudentRepo;
+import com.Spring.Cashing.Service.MailSenderService;
 
 @RestController
 
@@ -23,10 +24,14 @@ public class StudentController {
 
 	@Autowired
 	private StudentRepo srepo;
+	
+	@Autowired
+	private MailSenderService mailservice;
 
 	@PostMapping("/add")
 	@CacheEvict(value = "students", allEntries = true)
 	public Student addStudent(@RequestBody Student student) {
+		mailservice.sendMail(student.getSemail());
 		return srepo.save(student);
 	}
 
